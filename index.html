@@ -105,17 +105,17 @@
             // We trust the useEffect to fetch data if localStorage is empty.
             
             const [dishes, setDishes] = useState(() => {
-                const saved = localStorage.getItem('thanksgiving_dishes_v2');
+                const saved = localStorage.getItem('thanksgiving_dishes_v3');
                 return saved ? JSON.parse(saved) : [];
             });
 
             const [prepList, setPrepList] = useState(() => {
-                const saved = localStorage.getItem('thanksgiving_prep_v2');
+                const saved = localStorage.getItem('thanksgiving_prep_v3');
                 return saved ? JSON.parse(saved) : [];
             });
 
             const [resources, setResources] = useState(() => {
-                const saved = localStorage.getItem('thanksgiving_resources_v2');
+                const saved = localStorage.getItem('thanksgiving_resources_v3');
                 return saved ? JSON.parse(saved) : [];
             });
 
@@ -124,7 +124,9 @@
                 prepMinutes: 15,
                 cookMinutes: 30,
                 restMinutes: 0,
-                resource: '', // Will default to first available or empty
+                carveMinutes: 0, // Added optional field
+                plateMinutes: 0, // Added optional field
+                resource: '', 
                 temp: 350
             });
 
@@ -134,7 +136,7 @@
 
             // Fetch Default Data on Mount
             useEffect(() => {
-                const hasLocalData = localStorage.getItem('thanksgiving_dishes_v2');
+                const hasLocalData = localStorage.getItem('thanksgiving_dishes_v3');
                 
                 // Only fetch if we have no local data to prevent overwriting work
                 if (!hasLocalData) {
@@ -162,42 +164,54 @@
                     
                 } catch (error) {
                     console.log('Could not load default plan:', error);
-                    // If fetch fails, we just start with empty state, which is fine.
                 }
             };
 
             // Persist to localStorage
             useEffect(() => {
-                localStorage.setItem('thanksgiving_dishes_v2', JSON.stringify(dishes));
+                localStorage.setItem('thanksgiving_dishes_v3', JSON.stringify(dishes));
             }, [dishes]);
 
             useEffect(() => {
-                localStorage.setItem('thanksgiving_prep_v2', JSON.stringify(prepList));
+                localStorage.setItem('thanksgiving_prep_v3', JSON.stringify(prepList));
             }, [prepList]);
 
             useEffect(() => {
-                localStorage.setItem('thanksgiving_resources_v2', JSON.stringify(resources));
+                localStorage.setItem('thanksgiving_resources_v3', JSON.stringify(resources));
             }, [resources]);
 
             // Calculate timelines
             const scheduleData = useMemo(() => {
                 const dinnerMinutes = parseTimeInput(dinnerTimeStr);
                 
+                // Reverse Schedule Logic:
+                // Dinner -> Plate -> Carve -> Rest -> Cook -> Prep
+                
                 const processedDishes = dishes.map(dish => {
-                    const totalDuration = dish.prepMinutes + dish.cookMinutes + dish.restMinutes;
+                    // Fallbacks for new optional fields
+                    const carveMins = dish.carveMinutes || 0;
+                    const plateMins = dish.plateMinutes || 0;
+
+                    const totalDuration = dish.prepMinutes + dish.cookMinutes + dish.restMinutes + carveMins + plateMins;
                     
                     const finishTime = dinnerMinutes; 
-                    const restStartTime = finishTime - dish.restMinutes;
+                    const plateStartTime = finishTime - plateMins;
+                    const carveStartTime = plateStartTime - carveMins;
+                    const restStartTime = carveStartTime - dish.restMinutes;
                     const cookStartTime = restStartTime - dish.cookMinutes;
                     const prepStartTime = cookStartTime - dish.prepMinutes;
                     
                     return {
                         ...dish,
+                        carveMinutes: carveMins,
+                        plateMinutes: plateMins,
                         totalDuration,
                         times: {
                             start: prepStartTime,
                             cook: cookStartTime,
                             rest: restStartTime,
+                            carve: carveStartTime,
+                            plate: plateStartTime,
                             finish: finishTime
                         }
                     };
@@ -217,13 +231,12 @@
                 // Group dishes by resource
                 const dishesByResource = {};
                 scheduleData.processedDishes.forEach(d => {
-                    if (!d.resource) return; // Skip if no resource assigned
+                    if (!d.resource) return; 
                     if (!dishesByResource[d.resource]) dishesByResource[d.resource] = [];
                     dishesByResource[d.resource].push(d);
                 });
 
                 Object.keys(dishesByResource).forEach(resource => {
-                    // Skip infinite capacity resources
                     if (['Counter', 'Fridge'].includes(resource)) return;
 
                     const dishes = dishesByResource[resource];
@@ -233,13 +246,14 @@
                             const dishB = dishes[j];
                             
                             // Overlap Check
+                            // Note: Conflict usually matters during COOK time. 
+                            // Resting happens out of oven. Carving happens out of oven.
                             const startA = dishA.times.cook;
-                            const endA = dishA.times.rest; // Cooking ends at rest start
+                            const endA = dishA.times.rest; 
                             const startB = dishB.times.cook;
                             const endB = dishB.times.rest;
 
                             if (startA < endB && endA > startB) {
-                                // If it's an Oven, check temps
                                 if (resource.includes('Oven')) {
                                     if (dishA.temp !== dishB.temp) {
                                         alerts.push({
@@ -255,7 +269,6 @@
                                         });
                                     }
                                 } else {
-                                    // Generic resource conflict (e.g. Deep Fryer double booking)
                                     alerts.push({
                                         id: `${dishA.id}-${dishB.id}`,
                                         message: `Resource Conflict (${resource}): ${dishA.name} and ${dishB.name} need the device at the same time.`,
@@ -287,6 +300,12 @@
                     if (dish.restMinutes > 0) {
                         actions.push({ time: dish.times.rest, action: `Remove ${dish.name} & Rest/Hold`, type: 'rest', dishName: dish.name });
                     }
+                    if (dish.carveMinutes > 0) {
+                        actions.push({ time: dish.times.carve, action: `Start Carving ${dish.name}`, type: 'carve', dishName: dish.name });
+                    }
+                    if (dish.plateMinutes > 0) {
+                        actions.push({ time: dish.times.plate, action: `Plate ${dish.name} for Service`, type: 'plate', dishName: dish.name });
+                    }
                 });
                 
                 actions.push({ time: scheduleData.dinnerMinutes, action: "SERVE DINNER 🦃", type: 'serve', dishName: 'Everyone' });
@@ -297,7 +316,7 @@
             const addDish = () => {
                 if (!newDish.name) return;
                 setDishes([...dishes, { ...newDish, id: Date.now(), color: 'bg-slate-500' }]);
-                setNewDish({ name: '', prepMinutes: 15, cookMinutes: 30, restMinutes: 0, resource: resources[0] || '', temp: 350 });
+                setNewDish({ name: '', prepMinutes: 15, cookMinutes: 30, restMinutes: 0, carveMinutes: 0, plateMinutes: 0, resource: resources[0] || '', temp: 350 });
             };
 
             const removeDish = (id) => {
@@ -480,6 +499,8 @@
                                                 const prepWidth = (dish.prepMinutes / totalProjectMinutes) * 75;
                                                 const cookWidth = (dish.cookMinutes / totalProjectMinutes) * 75;
                                                 const restWidth = (dish.restMinutes / totalProjectMinutes) * 75;
+                                                const carveWidth = (dish.carveMinutes / totalProjectMinutes) * 75;
+                                                const plateWidth = (dish.plateMinutes / totalProjectMinutes) * 75;
 
                                                 return (
                                                     <div key={dish.id} className="group">
@@ -523,6 +544,26 @@
                                                                         </div>
                                                                     </div>
                                                                 )}
+
+                                                                {/* Carve Block */}
+                                                                {dish.carveMinutes > 0 && (
+                                                                    <div style={{ width: `${Math.max(carveWidth, 1)}%` }} className="h-full bg-purple-400 shrink-0 flex items-center justify-center group/item relative cursor-help">
+                                                                        <span className="text-[10px] text-white font-bold truncate px-1">C</span>
+                                                                        <div className="absolute bottom-full mb-1 hidden group-hover/item:block bg-slate-800 text-white text-xs p-1 rounded z-10 whitespace-nowrap shadow-xl">
+                                                                            {minutesToTime(dish.times.carve)} - Carve ({dish.carveMinutes}m)
+                                                                        </div>
+                                                                    </div>
+                                                                )}
+
+                                                                {/* Plate Block */}
+                                                                {dish.plateMinutes > 0 && (
+                                                                    <div style={{ width: `${Math.max(plateWidth, 1)}%` }} className="h-full bg-pink-400 shrink-0 flex items-center justify-center group/item relative cursor-help">
+                                                                        <span className="text-[10px] text-white font-bold truncate px-1">P</span>
+                                                                        <div className="absolute bottom-full mb-1 hidden group-hover/item:block bg-slate-800 text-white text-xs p-1 rounded z-10 whitespace-nowrap shadow-xl">
+                                                                            {minutesToTime(dish.times.plate)} - Plate ({dish.plateMinutes}m)
+                                                                        </div>
+                                                                    </div>
+                                                                )}
                                                             </div>
                                                         </div>
                                                         <div className="w-full flex justify-end text-xs text-slate-400 border-b border-slate-100 pb-2">
@@ -534,11 +575,13 @@
                                         </div>
                                         
                                         {/* Legend */}
-                                        <div className="mt-8 flex gap-4 text-xs justify-end text-slate-500">
+                                        <div className="mt-8 flex gap-4 text-xs justify-end text-slate-500 flex-wrap">
                                             <div className="flex items-center gap-1"><div className="w-3 h-3 bg-blue-400 rounded"></div>Prep</div>
                                             <div className="flex items-center gap-1"><div className="w-3 h-3 bg-orange-500 rounded"></div>Cook (Oven)</div>
                                             <div className="flex items-center gap-1"><div className="w-3 h-3 bg-red-500 rounded"></div>Cook (Other)</div>
                                             <div className="flex items-center gap-1"><div className="w-3 h-3 bg-emerald-400 rounded"></div>Rest</div>
+                                            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-purple-400 rounded"></div>Carve</div>
+                                            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-pink-400 rounded"></div>Plate</div>
                                         </div>
                                     </div>
                                 </div>
@@ -618,7 +661,9 @@
                                             <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 border-white ${
                                                 item.type === 'serve' ? 'bg-orange-600 w-5 h-5 -left-[11px]' :
                                                 item.type === 'prep' ? 'bg-blue-400' :
-                                                item.type === 'rest' ? 'bg-emerald-400' : 'bg-red-500'
+                                                item.type === 'rest' ? 'bg-emerald-400' : 
+                                                item.type === 'carve' ? 'bg-purple-400' :
+                                                item.type === 'plate' ? 'bg-pink-400' : 'bg-red-500'
                                             }`}></div>
                                             
                                             <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
@@ -711,6 +756,27 @@
                                                     >
                                                         {resources.map(r => <option key={r} value={r}>{r}</option>)}
                                                     </select>
+                                                </div>
+                                            </div>
+
+                                            <div className="grid grid-cols-2 gap-3">
+                                                <div>
+                                                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1 text-purple-600">Carve (min)</label>
+                                                    <input 
+                                                        type="number" 
+                                                        value={newDish.carveMinutes} 
+                                                        onChange={e => setNewDish({...newDish, carveMinutes: parseInt(e.target.value) || 0})}
+                                                        className="w-full border border-slate-300 rounded p-2"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1 text-pink-600">Plate (min)</label>
+                                                    <input 
+                                                        type="number" 
+                                                        value={newDish.plateMinutes} 
+                                                        onChange={e => setNewDish({...newDish, plateMinutes: parseInt(e.target.value) || 0})}
+                                                        className="w-full border border-slate-300 rounded p-2"
+                                                    />
                                                 </div>
                                             </div>
 
@@ -822,6 +888,8 @@
                                                     <span>Prep: {dish.prepMinutes}m</span>
                                                     <span>Cook: {dish.cookMinutes}m</span>
                                                     <span>Rest: {dish.restMinutes}m</span>
+                                                    {dish.carveMinutes > 0 && <span className="text-purple-600 font-semibold">Carve: {dish.carveMinutes}m</span>}
+                                                    {dish.plateMinutes > 0 && <span className="text-pink-600 font-semibold">Plate: {dish.plateMinutes}m</span>}
                                                 </div>
                                             </div>
                                             <button 
