@@ -1,5 +1,5 @@
 {
-  "_README": "INSTRUCTIONS: 1) 'resources' lists your available appliances. 2) 'dishes' are your menu items. Times are in minutes. 3) 'prepList' are tasks for days leading up to the event. 4) You can add optional 'carveMinutes' or 'plateMinutes' to any dish to account for time between resting and serving.",
+  "_README": "INSTRUCTIONS: 1) 'resources' lists your available appliances. 2) 'dishes' are your menu items. Times are in minutes. 3) 'prepList' are tasks for days leading up to the event. 4) 'usedInDishId' links a prerequisite dish (like Stock) to a main dish (like Gravy).",
   "resources": [
     "Oven",
     "Stove Burner 1",
@@ -7,11 +7,11 @@
     "Stove Burner 3",
     "Stove Burner 4",
     "Deep Fryer",
-    "Slow Cooker Large 1",
-    "Slow Cooker Large 2",
-    "Slow Cooker Small 1",
-    "Slow Cooker Small 2",
-    "Slow Cooker Small 3",
+    "Crokpot Large 1",
+    "Crokpot Large 2",
+    "Crokpot Small 1",
+    "Crokpot Small 2",
+    "Crokpot Small 3",
     "Microwave",
     "Counter",
     "Fridge"
@@ -19,7 +19,7 @@
   "dishes": [
     {
       "id": 1,
-      "name": "Oven Turkey (20 lbs)",
+      "name": "Main - Oven Turkey (Start 425°F -> 325°F)",
       "prepMinutes": 75,
       "cookMinutes": 255,
       "restMinutes": 45,
@@ -31,7 +31,7 @@
     },
     {
       "id": 2,
-      "name": "Deep Fried Turkey (20 lbs)",
+      "name": "Main - Deep Fried Turkey (20 lbs)",
       "prepMinutes": 45,
       "cookMinutes": 75,
       "restMinutes": 30,
@@ -43,9 +43,9 @@
     },
     {
       "id": 3,
-      "name": "Gravy Stock (Neck/Giblets)",
+      "name": "Side - Gravy Stock (Neck/Giblets)",
       "prepMinutes": 10,
-      "cookMinutes": 120,
+      "cookMinutes": 240,
       "restMinutes": 15,
       "carveMinutes": 5,
       "plateMinutes": 0,
@@ -56,19 +56,19 @@
     },
     {
       "id": 4,
-      "name": "Gravy Assembly",
+      "name": "Side - Gravy Assembly",
       "prepMinutes": 5,
       "cookMinutes": 15,
       "restMinutes": 0,
       "carveMinutes": 0,
       "plateMinutes": 5,
-      "resource": "Stove Burner 4",
+      "resource": "Stove Burner 2",
       "temp": 200,
       "color": "bg-yellow-800"
     },
     {
       "id": 5,
-      "name": "Mashed Potatoes (10 lbs Fresh)",
+      "name": "Side - Mashed Potatoes (10 lbs Fresh)",
       "prepMinutes": 45,
       "cookMinutes": 45,
       "restMinutes": 0,
@@ -80,27 +80,17 @@
     },
     {
       "id": 6,
-      "name": "Stuffing",
-      "prepMinutes": 45,
+      "name": "Side - Stuffing",
+      "prepMinutes": 0,
       "cookMinutes": 60,
       "restMinutes": 60,
-      "resource": "Oven",
+      "resource": "Microwave",
       "temp": 350,
       "color": "bg-orange-200"
     },
     {
-      "id": 8,
-      "name": "Hawaiian Rolls",
-      "prepMinutes": 0,
-      "cookMinutes": 15,
-      "restMinutes": 15,
-      "resource": "Oven",
-      "temp": 350,
-      "color": "bg-orange-300"
-    },
-    {
-      "id": 9,
-      "name": "Salad",
+      "id": 7,
+      "name": "Side - Salad",
       "prepMinutes": 30,
       "cookMinutes": 0,
       "restMinutes": 90,
@@ -109,19 +99,19 @@
       "color": "bg-green-300"
     },
     {
-      "id": 10,
-      "name": "Appetizers (Cheese/Dip)",
+      "id": 8,
+      "name": "Appetizer - Cheese & Cracker Tray",
       "prepMinutes": 30,
       "cookMinutes": 0,
-      "restMinutes": 120,
+      "restMinutes": 0,
       "resource": "Counter",
       "temp": 0,
       "color": "bg-slate-300",
       "serveOffsetMinutes": 240
     },
     {
-      "id": 11,
-      "name": "Cranberry Sauce",
+      "id": 9,
+      "name": "Side - Cranberry Sauce",
       "prepMinutes": 5,
       "cookMinutes": 0,
       "restMinutes": 0,
@@ -130,146 +120,183 @@
       "color": "bg-red-700"
     },
     {
-      "id": 12,
-      "name": "Sweet Potato Casserole",
-      "prepMinutes": 20,
-      "cookMinutes": 240,
-      "restMinutes": 0,
-      "plateMinutes": 10,
-      "resource": "Slow Cooker Large 1",
-      "temp": 0,
-      "color": "bg-orange-400"
+      "id": 10,
+      "name": "Side - Sweet Potato Boil/Mash",
+      "prepMinutes": 15,
+      "cookMinutes": 30,
+      "restMinutes": 10,
+      "resource": "Stove Burner 1",
+      "temp": 212,
+      "color": "bg-orange-500",
+      "usedInDishId": 11
     },
     {
-      "id": 13,
-      "name": "Frozen Veggies",
+      "id": 11,
+      "name": "Side - Sweet Potato Casserole (Heating)",
+      "prepMinutes": 5,
+      "cookMinutes": 30,
+      "restMinutes": 0,
+      "plateMinutes": 10,
+      "resource": "Crokpot Large 1",
+      "temp": 0,
+      "color": "bg-orange-400",
+      "serveOffsetMinutes": 120
+    },
+    {
+      "id": 12,
+      "name": "Side - Frozen Veggies",
       "prepMinutes": 5,
       "cookMinutes": 120,
       "restMinutes": 0,
       "plateMinutes": 5,
-      "resource": "Slow Cooker Small 1",
+      "resource": "Crokpot Small 1",
       "temp": 0,
       "color": "bg-green-500"
     },
     {
-      "id": 14,
-      "name": "Apple Sauce",
+      "id": 13,
+      "name": "Side - Apple Sauce",
       "prepMinutes": 20,
       "cookMinutes": 240,
       "restMinutes": 0,
       "plateMinutes": 0,
-      "resource": "Slow Cooker Large 2",
+      "resource": "Crokpot Large 2",
       "temp": 0,
       "color": "bg-red-400"
+    },
+    {
+      "id": 14,
+      "name": "Appetizer - Vegetable Tray",
+      "prepMinutes": 30,
+      "cookMinutes": 0,
+      "restMinutes": 0,
+      "resource": "Counter",
+      "temp": 0,
+      "color": "bg-green-400",
+      "serveOffsetMinutes": 240
+    },
+    {
+      "id": 15,
+      "name": "Side - Baked Mac and Cheese",
+      "prepMinutes": 20,
+      "cookMinutes": 60,
+      "restMinutes": 15,
+      "plateMinutes": 0,
+      "resource": "Oven",
+      "temp": 350,
+      "color": "bg-yellow-500"
+    },
+    {
+      "id": 16,
+      "name": "Side - Broccoli Salad",
+      "prepMinutes": 20,
+      "cookMinutes": 0,
+      "restMinutes": 0,
+      "resource": "Fridge",
+      "temp": 0,
+      "color": "bg-green-600"
+    },
+    {
+      "id": 17,
+      "name": "Side - Sweet and Sour Cabbage",
+      "prepMinutes": 5,
+      "cookMinutes": 60,
+      "restMinutes": 0,
+      "plateMinutes": 0,
+      "resource": "Crokpot Small 2",
+      "temp": 0,
+      "color": "bg-purple-300"
     }
   ],
   "prepList": [
     {
       "id": "t1",
       "day": "Tuesday",
-      "task": "Turkey pick up (ensure fully thawed)",
+      "task": "Ensure Turkey fully thawed",
       "done": false
     },
     {
       "id": "t2",
       "day": "Tuesday",
-      "task": "Clean out fridge - cooler for beer/water",
+      "task": "Clean out cooler for beer/water",
+      "done": false
+    },
+    {
+      "id": "t3",
+      "day": "Tuesday",
+      "task": "Make cranberry sauce",
       "done": false
     },
     {
       "id": "w1",
       "day": "Wednesday",
-      "task": "Turkey - Flip the bird to breastside down (mid day)",
+      "task": "Make candied pecans for sweet potato casserole",
       "done": false
     },
     {
-      "id": "w3",
-      "day": "Wednesday",
-      "task": "Make caesar salad dressing",
-      "done": false
-    },
-    {
-      "id": "w4",
-      "day": "Wednesday",
-      "task": "Wash/cut lettuce",
-      "done": false
-    },
-    {
-      "id": "w5",
-      "day": "Wednesday",
-      "task": "Make cranberry sauce - instapot",
-      "done": false
-    },
-    {
-      "id": "w6",
-      "day": "Wednesday",
-      "task": "Make cucumber salad",
-      "done": false
-    },
-    {
-      "id": "w7",
-      "day": "Wednesday",
-      "task": "Rip up bread for stuffing - set out to dry overnight",
-      "done": false
-    },
-    {
-      "id": "w8",
-      "day": "Wednesday",
-      "task": "Defrost sausage for stuffing",
-      "done": false
-    },
-    {
-      "id": "w9",
-      "day": "Wednesday",
-      "task": "Soften butter on counter overnight",
-      "done": false
-    },
-    {
-      "id": "w10",
+      "id": "w2",
       "day": "Wednesday",
       "task": "Mix sourcream with onion soup mix for chip dip app",
       "done": false
     },
     {
-      "id": "w11",
+      "id": "w6",
+      "day": "Wednesday",
+      "task": "Bake Cookies",
+      "done": false
+    },
+    {
+      "id": "w7",
+      "day": "Wednesday",
+      "task": "Bake Brownies",
+      "done": false
+    },
+    {
+      "id": "w3",
       "day": "Wednesday",
       "task": "Vacuum & Mop floors",
       "done": false
     },
     {
-      "id": "w12",
+      "id": "w4",
       "day": "Wednesday",
       "task": "Setup beverage table & dining room table",
       "done": false
     },
     {
-      "id": "w13",
-      "day": "Wednesday",
-      "task": "Put mushrooms in crockpot - low",
-      "done": false
-    },
-    {
-      "id": "w14",
+      "id": "w5",
       "day": "Wednesday",
       "task": "Put turkey in wet brine (Approx 8:00 PM - 12 hrs before start)",
       "done": false
     },
     {
+      "id": "w8",
+      "day": "Wednesday",
+      "task": "Marinade and season the deep fryer turkey",
+      "done": false
+    },
+    {
       "id": "th1",
       "day": "Thursday Morning",
-      "task": "7 AM flip turkey to breastside up",
+      "task": "Pull out butter to soften on the counter",
+      "done": false
+    },
+    {
+      "id": "th4",
+      "day": "Thursday Morning",
+      "task": "Turn on Macy's Thanksgiving Day Parade",
       "done": false
     },
     {
       "id": "th2",
       "day": "Thursday Morning",
-      "task": "7 AM turn mushrooms to warm",
+      "task": "Put wine in the fridge",
       "done": false
     },
     {
       "id": "th3",
       "day": "Thursday Morning",
-      "task": "8 AM make compound butter",
+      "task": "Setup deep fryer outside",
       "done": false
     }
   ]
