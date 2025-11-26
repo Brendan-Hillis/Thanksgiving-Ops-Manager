@@ -41,7 +41,6 @@
         const { useState, useEffect, useMemo } = React;
 
         // --- Inline Icon Components (Replacing External Dependency) ---
-        // This ensures the app works without relying on the lucide-react CDN which was causing errors.
         
         const Icon = ({ children, ...props }) => (
             <svg 
@@ -67,22 +66,47 @@
         const Trash2 = (props) => <Icon {...props}><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></Icon>;
         const ChefHat = (props) => <Icon {...props}><path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1h10z"/><path d="M6 17h12"/></Icon>;
         const Calendar = (props) => <Icon {...props}><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></Icon>;
-        const Thermometer = (props) => <Icon {...props}><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></Icon>;
-        const ArrowRight = (props) => <Icon {...props}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></Icon>;
         const CheckCircle2 = (props) => <Icon {...props}><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></Icon>;
+        const ListChecks = (props) => <Icon {...props}><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></Icon>;
 
         // --- Default Data & Types ---
-
+        
+        // Mapped from user's "Thursday" schedule targeting a 3:00 PM Dinner
         const INITIAL_DISHES = [
-            { id: 1, name: 'Roast Turkey (20lb)', prepMinutes: 45, cookMinutes: 240, restMinutes: 45, resource: 'Oven', temp: 325, color: 'bg-amber-500' },
-            { id: 2, name: 'Deep Fried Turkey', prepMinutes: 60, cookMinutes: 45, restMinutes: 30, resource: 'Deep Fryer', temp: 350, color: 'bg-red-600' },
-            { id: 3, name: 'Mashed Potatoes', prepMinutes: 20, cookMinutes: 25, restMinutes: 0, resource: 'Stovetop', temp: 0, color: 'bg-yellow-200' },
-            { id: 4, name: 'Green Bean Casserole', prepMinutes: 15, cookMinutes: 30, restMinutes: 5, resource: 'Oven', temp: 350, color: 'bg-green-600' },
-            { id: 5, name: 'Apple Sauce', prepMinutes: 15, cookMinutes: 0, restMinutes: 120, resource: 'Fridge', temp: 0, color: 'bg-red-200' },
-            { id: 6, name: 'Gravy', prepMinutes: 5, cookMinutes: 15, restMinutes: 0, resource: 'Stovetop', temp: 0, color: 'bg-amber-800' },
+            { id: 1, name: 'Turkey (10-12lb)', prepMinutes: 90, cookMinutes: 180, restMinutes: 30, resource: 'Oven', temp: 325, color: 'bg-amber-600' }, // 10am start prep -> 11:30 cook -> 2:30 done -> 3:00 eat
+            { id: 2, name: 'Burgundy Mushrooms', prepMinutes: 5, cookMinutes: 180, restMinutes: 0, resource: 'Slow Cooker', temp: 0, color: 'bg-amber-900' }, // 12pm high
+            { id: 3, name: 'Corn Pudding', prepMinutes: 10, cookMinutes: 60, restMinutes: 60, resource: 'Oven', temp: 350, color: 'bg-yellow-400' }, // 1pm bake -> 2pm done -> hold
+            { id: 4, name: 'Stuffing', prepMinutes: 45, cookMinutes: 60, restMinutes: 60, resource: 'Oven', temp: 350, color: 'bg-orange-200' }, // 11:45 prep -> 12:30 wait -> 1:00 bake -> 2:00 done -> hold
+            { id: 5, name: 'Mashed Potatoes (Reheat)', prepMinutes: 5, cookMinutes: 210, restMinutes: 0, resource: 'Slow Cooker', temp: 0, color: 'bg-yellow-100' }, // 11:30 start warming
+            { id: 6, name: 'Hawaiian Rolls', prepMinutes: 0, cookMinutes: 15, restMinutes: 15, resource: 'Oven', temp: 350, color: 'bg-orange-300' }, // 2:30 warm
+            { id: 7, name: 'Caesar Salad', prepMinutes: 30, cookMinutes: 0, restMinutes: 90, resource: 'Counter', temp: 0, color: 'bg-green-300' }, // 1pm prep -> hold
+            { id: 8, name: 'Appetizers (Cheese/Dip)', prepMinutes: 30, cookMinutes: 0, restMinutes: 120, resource: 'Counter', temp: 0, color: 'bg-slate-300' }, // 12:30 prep -> serve
+            { id: 9, name: 'Cranberry Sauce', prepMinutes: 5, cookMinutes: 0, restMinutes: 0, resource: 'Fridge', temp: 0, color: 'bg-red-700' }, // Ready to serve
+            { id: 10, name: 'Gravy', prepMinutes: 5, cookMinutes: 15, restMinutes: 0, resource: 'Stovetop', temp: 0, color: 'bg-amber-800' } // 2:40pm make
         ];
 
-        const RESOURCES = ['Oven', 'Stovetop', 'Deep Fryer', 'Microwave', 'Counter', 'Fridge', 'Smoker'];
+        const INITIAL_PREP_LIST = [
+            { id: 't1', day: 'Tuesday', task: 'Turkey pick up and dry brine (12-48 hours before cooking) - breastside up', done: false },
+            { id: 't2', day: 'Tuesday', task: 'Clean out fridge - cooler for beer/water', done: false },
+            { id: 'w1', day: 'Wednesday', task: 'Turkey - Flip the bird to breastside down (mid day)', done: false },
+            { id: 'w2', day: 'Wednesday', task: 'Make Garlic Mashed Potatoes - store for thursday', done: false },
+            { id: 'w3', day: 'Wednesday', task: 'Make caesar salad dressing', done: false },
+            { id: 'w4', day: 'Wednesday', task: 'Wash/cut lettuce', done: false },
+            { id: 'w5', day: 'Wednesday', task: 'Make cranberry sauce - instapot', done: false },
+            { id: 'w6', day: 'Wednesday', task: 'Make cucumber salad', done: false },
+            { id: 'w7', day: 'Wednesday', task: 'Rip up bread for stuffing - set out to dry overnight', done: false },
+            { id: 'w8', day: 'Wednesday', task: 'Defrost sausage for stuffing', done: false },
+            { id: 'w9', day: 'Wednesday', task: 'Soften butter on counter overnight', done: false },
+            { id: 'w10', day: 'Wednesday', task: 'Mix sourcream with onion soup mix for chip dip app', done: false },
+            { id: 'w11', day: 'Wednesday', task: 'Vacuum & Mop floors', done: false },
+            { id: 'w12', day: 'Wednesday', task: 'Setup beverage table & dining room table', done: false },
+            { id: 'w13', day: 'Wednesday', task: 'Put mushrooms in crockpot - low', done: false },
+            { id: 'th1', day: 'Thursday Morning', task: '7 AM flip turkey to breastside up', done: false },
+            { id: 'th2', day: 'Thursday Morning', task: '7 AM turn mushrooms to warm', done: false },
+            { id: 'th3', day: 'Thursday Morning', task: '8 AM make compound butter', done: false },
+        ];
+
+        const RESOURCES = ['Oven', 'Stovetop', 'Deep Fryer', 'Slow Cooker', 'Microwave', 'Counter', 'Fridge', 'Smoker'];
 
         // --- Helper Functions ---
 
@@ -109,12 +133,20 @@
 
         function ThanksgivingPlanner() {
             const [dinnerTimeStr, setDinnerTimeStr] = useState("15:00"); // 3:00 PM
+            const [view, setView] = useState('gantt'); 
+            
+            // State for "Day Of" Dishes
             const [dishes, setDishes] = useState(() => {
-                // Try to load from localStorage to save state between reloads
-                const saved = localStorage.getItem('thanksgiving_dishes');
+                const saved = localStorage.getItem('thanksgiving_dishes_v2');
                 return saved ? JSON.parse(saved) : INITIAL_DISHES;
             });
-            const [view, setView] = useState('gantt'); 
+
+            // State for "Prep Ahead" List
+            const [prepList, setPrepList] = useState(() => {
+                const saved = localStorage.getItem('thanksgiving_prep_v2');
+                return saved ? JSON.parse(saved) : INITIAL_PREP_LIST;
+            });
+
             const [newDish, setNewDish] = useState({
                 name: '',
                 prepMinutes: 15,
@@ -124,10 +156,16 @@
                 temp: 350
             });
 
+            const [newPrepItem, setNewPrepItem] = useState({ day: 'Wednesday', task: '' });
+
             // Persist to localStorage
             useEffect(() => {
-                localStorage.setItem('thanksgiving_dishes', JSON.stringify(dishes));
+                localStorage.setItem('thanksgiving_dishes_v2', JSON.stringify(dishes));
             }, [dishes]);
+
+            useEffect(() => {
+                localStorage.setItem('thanksgiving_prep_v2', JSON.stringify(prepList));
+            }, [prepList]);
 
             // Calculate timelines
             const scheduleData = useMemo(() => {
@@ -206,13 +244,13 @@
                     if (dish.cookMinutes > 0) {
                         actions.push({ 
                             time: dish.times.cook, 
-                            action: `${dish.resource === 'Oven' ? `Put ${dish.name} in Oven` : `Start Cooking ${dish.name}`}`, 
+                            action: `${dish.resource === 'Oven' ? `Put ${dish.name} in Oven` : `Start Cooking/Warming ${dish.name}`}`, 
                             type: 'cook',
                             dishName: dish.name
                         });
                     }
                     if (dish.restMinutes > 0) {
-                        actions.push({ time: dish.times.rest, action: `Remove ${dish.name} & Rest/Chill`, type: 'rest', dishName: dish.name });
+                        actions.push({ time: dish.times.rest, action: `Remove ${dish.name} & Rest/Hold`, type: 'rest', dishName: dish.name });
                     }
                 });
                 
@@ -230,6 +268,20 @@
             const removeDish = (id) => {
                 setDishes(dishes.filter(d => d.id !== id));
             };
+
+            const togglePrepItem = (id) => {
+                setPrepList(prepList.map(item => item.id === id ? { ...item, done: !item.done } : item));
+            };
+            
+            const addPrepItem = () => {
+                if(!newPrepItem.task) return;
+                setPrepList([...prepList, { id: Date.now(), ...newPrepItem, done: false }]);
+                setNewPrepItem({ ...newPrepItem, task: '' });
+            };
+
+            const removePrepItem = (id) => {
+                setPrepList(prepList.filter(item => item.id !== id));
+            }
 
             return (
                 <div className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12">
@@ -265,7 +317,14 @@
                                 className={`px-4 py-2 rounded-t-lg font-medium transition-colors whitespace-nowrap ${view === 'gantt' ? 'bg-white text-orange-700 border-x border-t border-slate-200' : 'text-slate-500 hover:text-slate-700'}`}
                             >
                                 <Calendar className="inline w-4 h-4 mr-2" />
-                                Timeline (Gantt)
+                                Timeline (Day Of)
+                            </button>
+                            <button 
+                                onClick={() => setView('prep')}
+                                className={`px-4 py-2 rounded-t-lg font-medium transition-colors whitespace-nowrap ${view === 'prep' ? 'bg-white text-orange-700 border-x border-t border-slate-200' : 'text-slate-500 hover:text-slate-700'}`}
+                            >
+                                <ListChecks className="inline w-4 h-4 mr-2" />
+                                Prep Days (Tue/Wed)
                             </button>
                             <button 
                                 onClick={() => setView('list')}
@@ -301,7 +360,7 @@
                         {/* View: Gantt Chart */}
                         {view === 'gantt' && (
                             <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden p-4">
-                                <h2 className="text-xl font-bold mb-6 text-slate-800">Production Schedule</h2>
+                                <h2 className="text-xl font-bold mb-6 text-slate-800">Production Schedule (Thursday)</h2>
                                 
                                 <div className="overflow-x-auto pb-4">
                                     <div className="min-w-[800px]">
@@ -388,13 +447,73 @@
                                 </div>
                             </div>
                         )}
+                        
+                        {/* View: Prep List */}
+                        {view === 'prep' && (
+                            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                                <h2 className="text-xl font-bold mb-6 text-slate-800 flex items-center gap-2">
+                                    <ListChecks className="w-6 h-6 text-orange-600" />
+                                    Prep Ahead Checklist
+                                </h2>
+
+                                <div className="mb-6 grid grid-cols-1 md:grid-cols-4 gap-2">
+                                    <select 
+                                        className="border border-slate-300 rounded p-2"
+                                        value={newPrepItem.day}
+                                        onChange={(e) => setNewPrepItem({...newPrepItem, day: e.target.value})}
+                                    >
+                                        <option>Monday</option>
+                                        <option>Tuesday</option>
+                                        <option>Wednesday</option>
+                                        <option>Thursday Morning</option>
+                                    </select>
+                                    <input 
+                                        type="text" 
+                                        className="border border-slate-300 rounded p-2 md:col-span-2" 
+                                        placeholder="Add new task..." 
+                                        value={newPrepItem.task}
+                                        onChange={(e) => setNewPrepItem({...newPrepItem, task: e.target.value})}
+                                        onKeyPress={(e) => e.key === 'Enter' && addPrepItem()}
+                                    />
+                                    <button onClick={addPrepItem} className="bg-slate-800 text-white rounded p-2 font-bold">Add Task</button>
+                                </div>
+
+                                <div className="space-y-6">
+                                    {['Tuesday', 'Wednesday', 'Thursday Morning'].map(day => {
+                                        const dayItems = prepList.filter(item => item.day === day);
+                                        if (dayItems.length === 0) return null;
+                                        return (
+                                            <div key={day}>
+                                                <h3 className="font-bold text-lg text-slate-500 border-b border-slate-200 mb-3 pb-1">{day}</h3>
+                                                <div className="space-y-2">
+                                                    {dayItems.map(item => (
+                                                        <div key={item.id} className="flex items-start gap-3 group">
+                                                            <button 
+                                                                onClick={() => togglePrepItem(item.id)}
+                                                                className={`mt-1 w-5 h-5 rounded border flex items-center justify-center shrink-0 transition-colors ${item.done ? 'bg-emerald-500 border-emerald-500 text-white' : 'border-slate-300 hover:border-orange-500'}`}
+                                                            >
+                                                                {item.done && <CheckCircle2 className="w-3.5 h-3.5" />}
+                                                            </button>
+                                                            <div className="flex-1 flex justify-between items-start">
+                                                                <span className={item.done ? 'text-slate-400 line-through' : 'text-slate-800'}>{item.task}</span>
+                                                                <button onClick={() => removePrepItem(item.id)} className="text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"><Trash2 className="w-4 h-4" /></button>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        )}
 
                         {/* View: Run Sheet */}
                         {view === 'list' && (
                             <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
                                 <h2 className="text-xl font-bold mb-6 text-slate-800 flex items-center gap-2">
                                     <Clock className="w-6 h-6 text-orange-600" />
-                                    Master Run Sheet
+                                    Master Run Sheet (Thursday)
                                 </h2>
                                 <div className="relative border-l-2 border-slate-200 ml-3 space-y-8 pb-4">
                                     {runSheet.map((item, idx) => (
