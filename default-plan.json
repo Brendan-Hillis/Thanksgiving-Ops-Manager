@@ -1,4 +1,5 @@
 {
+  "_README": "INSTRUCTIONS: 1) 'resources' lists your available appliances. 2) 'dishes' are your menu items. Times are in minutes. 3) 'prepList' are tasks for days leading up to the event. 4) You can add optional 'carveMinutes' or 'plateMinutes' to any dish to account for time between resting and serving.",
   "resources": [
     "Oven 1",
     "Oven 2",
@@ -11,11 +12,11 @@
     "Smoker"
   ],
   "dishes": [
-    { "id": 1, "name": "Turkey (10-12lb)", "prepMinutes": 90, "cookMinutes": 180, "restMinutes": 30, "resource": "Oven 1", "temp": 325, "color": "bg-amber-600" },
+    { "id": 1, "name": "Turkey (10-12lb)", "prepMinutes": 90, "cookMinutes": 180, "restMinutes": 30, "carveMinutes": 15, "plateMinutes": 10, "resource": "Oven 1", "temp": 325, "color": "bg-amber-600" },
     { "id": 2, "name": "Burgundy Mushrooms", "prepMinutes": 5, "cookMinutes": 180, "restMinutes": 0, "resource": "Slow Cooker", "temp": 0, "color": "bg-amber-900" },
     { "id": 3, "name": "Corn Pudding", "prepMinutes": 10, "cookMinutes": 60, "restMinutes": 60, "resource": "Oven 1", "temp": 350, "color": "bg-yellow-400" },
     { "id": 4, "name": "Stuffing", "prepMinutes": 45, "cookMinutes": 60, "restMinutes": 60, "resource": "Oven 1", "temp": 350, "color": "bg-orange-200" },
-    { "id": 5, "name": "Mashed Potatoes (Reheat)", "prepMinutes": 5, "cookMinutes": 210, "restMinutes": 0, "resource": "Slow Cooker", "temp": 0, "color": "bg-yellow-100" },
+    { "id": 5, "name": "Mashed Potatoes (Reheat)", "prepMinutes": 5, "cookMinutes": 210, "restMinutes": 0, "plateMinutes": 5, "resource": "Slow Cooker", "temp": 0, "color": "bg-yellow-100" },
     { "id": 6, "name": "Hawaiian Rolls", "prepMinutes": 0, "cookMinutes": 15, "restMinutes": 15, "resource": "Oven 1", "temp": 350, "color": "bg-orange-300" },
     { "id": 7, "name": "Caesar Salad", "prepMinutes": 30, "cookMinutes": 0, "restMinutes": 90, "resource": "Counter", "temp": 0, "color": "bg-green-300" },
     { "id": 8, "name": "Appetizers (Cheese/Dip)", "prepMinutes": 30, "cookMinutes": 0, "restMinutes": 120, "resource": "Counter", "temp": 0, "color": "bg-slate-300" },
