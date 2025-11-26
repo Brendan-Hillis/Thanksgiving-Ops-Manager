@@ -70,21 +70,24 @@
         const ListChecks = (props) => <Icon {...props}><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></Icon>;
         const Download = (props) => <Icon {...props}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></Icon>;
         const Upload = (props) => <Icon {...props}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></Icon>;
+        const Settings = (props) => <Icon {...props}><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></Icon>;
 
         // --- Default Data & Types ---
         
+        const INITIAL_RESOURCES = ['Oven 1', 'Oven 2', 'Stovetop', 'Deep Fryer', 'Slow Cooker', 'Microwave', 'Counter', 'Fridge', 'Smoker'];
+
         // Mapped from user's "Thursday" schedule targeting a 3:00 PM Dinner
         const INITIAL_DISHES = [
-            { id: 1, name: 'Turkey (10-12lb)', prepMinutes: 90, cookMinutes: 180, restMinutes: 30, resource: 'Oven 1', temp: 325, color: 'bg-amber-600' }, // 10am start prep -> 11:30 cook -> 2:30 done -> 3:00 eat
-            { id: 2, name: 'Burgundy Mushrooms', prepMinutes: 5, cookMinutes: 180, restMinutes: 0, resource: 'Slow Cooker', temp: 0, color: 'bg-amber-900' }, // 12pm high
-            { id: 3, name: 'Corn Pudding', prepMinutes: 10, cookMinutes: 60, restMinutes: 60, resource: 'Oven 1', temp: 350, color: 'bg-yellow-400' }, // 1pm bake -> 2pm done -> hold
-            { id: 4, name: 'Stuffing', prepMinutes: 45, cookMinutes: 60, restMinutes: 60, resource: 'Oven 1', temp: 350, color: 'bg-orange-200' }, // 11:45 prep -> 12:30 wait -> 1:00 bake -> 2:00 done -> hold
-            { id: 5, name: 'Mashed Potatoes (Reheat)', prepMinutes: 5, cookMinutes: 210, restMinutes: 0, resource: 'Slow Cooker', temp: 0, color: 'bg-yellow-100' }, // 11:30 start warming
-            { id: 6, name: 'Hawaiian Rolls', prepMinutes: 0, cookMinutes: 15, restMinutes: 15, resource: 'Oven 1', temp: 350, color: 'bg-orange-300' }, // 2:30 warm
-            { id: 7, name: 'Caesar Salad', prepMinutes: 30, cookMinutes: 0, restMinutes: 90, resource: 'Counter', temp: 0, color: 'bg-green-300' }, // 1pm prep -> hold
-            { id: 8, name: 'Appetizers (Cheese/Dip)', prepMinutes: 30, cookMinutes: 0, restMinutes: 120, resource: 'Counter', temp: 0, color: 'bg-slate-300' }, // 12:30 prep -> serve
-            { id: 9, name: 'Cranberry Sauce', prepMinutes: 5, cookMinutes: 0, restMinutes: 0, resource: 'Fridge', temp: 0, color: 'bg-red-700' }, // Ready to serve
-            { id: 10, name: 'Gravy', prepMinutes: 5, cookMinutes: 15, restMinutes: 0, resource: 'Stovetop', temp: 0, color: 'bg-amber-800' } // 2:40pm make
+            { id: 1, name: 'Turkey (10-12lb)', prepMinutes: 90, cookMinutes: 180, restMinutes: 30, resource: 'Oven 1', temp: 325, color: 'bg-amber-600' }, 
+            { id: 2, name: 'Burgundy Mushrooms', prepMinutes: 5, cookMinutes: 180, restMinutes: 0, resource: 'Slow Cooker', temp: 0, color: 'bg-amber-900' }, 
+            { id: 3, name: 'Corn Pudding', prepMinutes: 10, cookMinutes: 60, restMinutes: 60, resource: 'Oven 1', temp: 350, color: 'bg-yellow-400' }, 
+            { id: 4, name: 'Stuffing', prepMinutes: 45, cookMinutes: 60, restMinutes: 60, resource: 'Oven 1', temp: 350, color: 'bg-orange-200' }, 
+            { id: 5, name: 'Mashed Potatoes (Reheat)', prepMinutes: 5, cookMinutes: 210, restMinutes: 0, resource: 'Slow Cooker', temp: 0, color: 'bg-yellow-100' }, 
+            { id: 6, name: 'Hawaiian Rolls', prepMinutes: 0, cookMinutes: 15, restMinutes: 15, resource: 'Oven 1', temp: 350, color: 'bg-orange-300' }, 
+            { id: 7, name: 'Caesar Salad', prepMinutes: 30, cookMinutes: 0, restMinutes: 90, resource: 'Counter', temp: 0, color: 'bg-green-300' }, 
+            { id: 8, name: 'Appetizers (Cheese/Dip)', prepMinutes: 30, cookMinutes: 0, restMinutes: 120, resource: 'Counter', temp: 0, color: 'bg-slate-300' }, 
+            { id: 9, name: 'Cranberry Sauce', prepMinutes: 5, cookMinutes: 0, restMinutes: 0, resource: 'Fridge', temp: 0, color: 'bg-red-700' }, 
+            { id: 10, name: 'Gravy', prepMinutes: 5, cookMinutes: 15, restMinutes: 0, resource: 'Stovetop', temp: 0, color: 'bg-amber-800' } 
         ];
 
         const INITIAL_PREP_LIST = [
@@ -107,8 +110,6 @@
             { id: 'th2', day: 'Thursday Morning', task: '7 AM turn mushrooms to warm', done: false },
             { id: 'th3', day: 'Thursday Morning', task: '8 AM make compound butter', done: false },
         ];
-
-        const RESOURCES = ['Oven 1', 'Oven 2', 'Stovetop', 'Deep Fryer', 'Slow Cooker', 'Microwave', 'Counter', 'Fridge', 'Smoker'];
 
         // --- Helper Functions ---
 
@@ -150,6 +151,12 @@
                 return saved ? JSON.parse(saved) : INITIAL_PREP_LIST;
             });
 
+            // State for "Resources" (Appliances)
+            const [resources, setResources] = useState(() => {
+                const saved = localStorage.getItem('thanksgiving_resources_v2');
+                return saved ? JSON.parse(saved) : INITIAL_RESOURCES;
+            });
+
             const [newDish, setNewDish] = useState({
                 name: '',
                 prepMinutes: 15,
@@ -160,6 +167,8 @@
             });
 
             const [newPrepItem, setNewPrepItem] = useState({ day: 'Wednesday', task: '' });
+            const [newResourceName, setNewResourceName] = useState('');
+            const [isManagingResources, setIsManagingResources] = useState(false);
 
             // Persist to localStorage
             useEffect(() => {
@@ -169,6 +178,10 @@
             useEffect(() => {
                 localStorage.setItem('thanksgiving_prep_v2', JSON.stringify(prepList));
             }, [prepList]);
+
+            useEffect(() => {
+                localStorage.setItem('thanksgiving_resources_v2', JSON.stringify(resources));
+            }, [resources]);
 
             // Calculate timelines
             const scheduleData = useMemo(() => {
@@ -308,12 +321,26 @@
                 setPrepList(prepList.filter(item => item.id !== id));
             };
 
+            const addResource = () => {
+                if(!newResourceName) return;
+                if(resources.includes(newResourceName)) return;
+                setResources([...resources, newResourceName]);
+                setNewResourceName('');
+            };
+
+            const removeResource = (rToRemove) => {
+                if(confirm(`Are you sure you want to remove ${rToRemove}? Existing dishes using it will keep the data but may show warnings.`)) {
+                    setResources(resources.filter(r => r !== rToRemove));
+                }
+            };
+
             // --- Export / Import Handlers ---
 
             const handleExport = () => {
                 const data = {
                     dishes,
                     prepList,
+                    resources,
                     version: 1,
                     savedAt: new Date().toISOString()
                 };
@@ -338,7 +365,8 @@
                         const data = JSON.parse(e.target.result);
                         if (data.dishes && Array.isArray(data.dishes)) setDishes(data.dishes);
                         if (data.prepList && Array.isArray(data.prepList)) setPrepList(data.prepList);
-                        alert('Plan loaded successfully! Timeline and Prep Checklist have been updated.');
+                        if (data.resources && Array.isArray(data.resources)) setResources(data.resources);
+                        alert('Plan loaded successfully! Timeline, Checklist, and Inventory have been updated.');
                     } catch (error) {
                         alert('Error loading file. Please ensure it is a valid Thanksgiving Plan JSON file.');
                         console.error(error);
@@ -612,86 +640,136 @@
                         {/* View: Input Management */}
                         {view === 'input' && (
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                {/* Add Form */}
+                                {/* Left Column: Add Form OR Resource Manager */}
                                 <div className="md:col-span-1 bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-fit">
-                                    <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                                        <Plus className="w-5 h-5" /> Add New Dish
-                                    </h3>
-                                    <div className="space-y-4">
-                                        <div>
-                                            <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Dish Name</label>
-                                            <input 
-                                                type="text" 
-                                                value={newDish.name} 
-                                                onChange={e => setNewDish({...newDish, name: e.target.value})}
-                                                placeholder="e.g. Cornbread"
-                                                className="w-full border border-slate-300 rounded p-2 focus:ring-2 focus:ring-orange-200 outline-none"
-                                            />
-                                        </div>
-
-                                        <div className="grid grid-cols-2 gap-3">
-                                            <div>
-                                                <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Prep (min)</label>
-                                                <input 
-                                                    type="number" 
-                                                    value={newDish.prepMinutes} 
-                                                    onChange={e => setNewDish({...newDish, prepMinutes: parseInt(e.target.value) || 0})}
-                                                    className="w-full border border-slate-300 rounded p-2"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Cook (min)</label>
-                                                <input 
-                                                    type="number" 
-                                                    value={newDish.cookMinutes} 
-                                                    onChange={e => setNewDish({...newDish, cookMinutes: parseInt(e.target.value) || 0})}
-                                                    className="w-full border border-slate-300 rounded p-2"
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className="grid grid-cols-2 gap-3">
-                                            <div>
-                                                <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Rest (min)</label>
-                                                <input 
-                                                    type="number" 
-                                                    value={newDish.restMinutes} 
-                                                    onChange={e => setNewDish({...newDish, restMinutes: parseInt(e.target.value) || 0})}
-                                                    className="w-full border border-slate-300 rounded p-2"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Resource</label>
-                                                <select 
-                                                    value={newDish.resource} 
-                                                    onChange={e => setNewDish({...newDish, resource: e.target.value})}
-                                                    className="w-full border border-slate-300 rounded p-2 bg-white"
-                                                >
-                                                    {RESOURCES.map(r => <option key={r} value={r}>{r}</option>)}
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        {newDish.resource.includes('Oven') && (
-                                            <div>
-                                                <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Oven Temp (°F)</label>
-                                                <input 
-                                                    type="number" 
-                                                    value={newDish.temp} 
-                                                    step="25"
-                                                    onChange={e => setNewDish({...newDish, temp: parseInt(e.target.value) || 0})}
-                                                    className="w-full border border-slate-300 rounded p-2"
-                                                />
-                                            </div>
-                                        )}
-
+                                    <div className="flex justify-between items-center mb-4">
+                                        <h3 className="font-bold text-lg flex items-center gap-2">
+                                            {isManagingResources ? <Settings className="w-5 h-5" /> : <Plus className="w-5 h-5" />} 
+                                            {isManagingResources ? 'Kitchen Inventory' : 'Add New Dish'}
+                                        </h3>
                                         <button 
-                                            onClick={addDish}
-                                            className="w-full bg-orange-600 text-white font-bold py-3 rounded hover:bg-orange-700 transition-colors flex justify-center items-center gap-2 mt-2"
+                                            onClick={() => setIsManagingResources(!isManagingResources)}
+                                            className="text-xs font-semibold text-orange-600 hover:text-orange-800 underline"
                                         >
-                                            Add to Plan
+                                            {isManagingResources ? 'Back to Add Dish' : 'Manage Inventory'}
                                         </button>
                                     </div>
+
+                                    {!isManagingResources ? (
+                                        <div className="space-y-4">
+                                            <div>
+                                                <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Dish Name</label>
+                                                <input 
+                                                    type="text" 
+                                                    value={newDish.name} 
+                                                    onChange={e => setNewDish({...newDish, name: e.target.value})}
+                                                    placeholder="e.g. Cornbread"
+                                                    className="w-full border border-slate-300 rounded p-2 focus:ring-2 focus:ring-orange-200 outline-none"
+                                                />
+                                            </div>
+
+                                            <div className="grid grid-cols-2 gap-3">
+                                                <div>
+                                                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Prep (min)</label>
+                                                    <input 
+                                                        type="number" 
+                                                        value={newDish.prepMinutes} 
+                                                        onChange={e => setNewDish({...newDish, prepMinutes: parseInt(e.target.value) || 0})}
+                                                        className="w-full border border-slate-300 rounded p-2"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Cook (min)</label>
+                                                    <input 
+                                                        type="number" 
+                                                        value={newDish.cookMinutes} 
+                                                        onChange={e => setNewDish({...newDish, cookMinutes: parseInt(e.target.value) || 0})}
+                                                        className="w-full border border-slate-300 rounded p-2"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className="grid grid-cols-2 gap-3">
+                                                <div>
+                                                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Rest (min)</label>
+                                                    <input 
+                                                        type="number" 
+                                                        value={newDish.restMinutes} 
+                                                        onChange={e => setNewDish({...newDish, restMinutes: parseInt(e.target.value) || 0})}
+                                                        className="w-full border border-slate-300 rounded p-2"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Resource</label>
+                                                    <select 
+                                                        value={newDish.resource} 
+                                                        onChange={e => setNewDish({...newDish, resource: e.target.value})}
+                                                        className="w-full border border-slate-300 rounded p-2 bg-white"
+                                                    >
+                                                        {resources.map(r => <option key={r} value={r}>{r}</option>)}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            {newDish.resource.includes('Oven') && (
+                                                <div>
+                                                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Oven Temp (°F)</label>
+                                                    <input 
+                                                        type="number" 
+                                                        value={newDish.temp} 
+                                                        step="25"
+                                                        onChange={e => setNewDish({...newDish, temp: parseInt(e.target.value) || 0})}
+                                                        className="w-full border border-slate-300 rounded p-2"
+                                                    />
+                                                </div>
+                                            )}
+
+                                            <button 
+                                                onClick={addDish}
+                                                className="w-full bg-orange-600 text-white font-bold py-3 rounded hover:bg-orange-700 transition-colors flex justify-center items-center gap-2 mt-2"
+                                            >
+                                                Add to Plan
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <div className="space-y-4">
+                                            <div className="bg-orange-50 p-3 rounded text-xs text-orange-800">
+                                                Add appliances here to select them for your dishes. For automatic temperature conflicts, please include "Oven" in the name.
+                                            </div>
+                                            
+                                            <div className="flex gap-2">
+                                                <input 
+                                                    type="text"
+                                                    value={newResourceName}
+                                                    onChange={e => setNewResourceName(e.target.value)}
+                                                    placeholder="e.g. Air Fryer"
+                                                    className="w-full border border-slate-300 rounded p-2"
+                                                />
+                                                <button 
+                                                    onClick={addResource}
+                                                    className="bg-slate-800 text-white px-3 rounded font-bold"
+                                                >
+                                                    Add
+                                                </button>
+                                            </div>
+
+                                            <div className="space-y-2 max-h-[300px] overflow-y-auto pr-1">
+                                                {resources.map(r => (
+                                                    <div key={r} className="flex justify-between items-center bg-slate-50 p-2 rounded border border-slate-200">
+                                                        <span className="text-sm font-medium">{r}</span>
+                                                        {!['Counter', 'Fridge'].includes(r) && (
+                                                            <button 
+                                                                onClick={() => removeResource(r)} 
+                                                                className="text-slate-400 hover:text-red-500"
+                                                            >
+                                                                <Trash2 className="w-4 h-4" />
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
                                     
                                     {/* Data Management Section */}
                                     <div className="mt-8 pt-6 border-t border-slate-200">
