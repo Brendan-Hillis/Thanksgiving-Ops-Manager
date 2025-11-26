@@ -1,0 +1,47 @@
+{
+  "_README": "INSTRUCTIONS: 1) 'resources' lists your appliances. 2) 'dishes' are menu items. 3) 'prepList' are tasks for days leading up. 4) 'usedInDishId' links a prerequisite dish (like Stock) to a main dish (like Gravy).",
+  "resources": [
+    "Oven 1",
+    "Oven 2",
+    "Stovetop",
+    "Deep Fryer",
+    "Slow Cooker",
+    "Microwave",
+    "Counter",
+    "Fridge",
+    "Smoker"
+  ],
+  "dishes": [
+    { "id": 1, "name": "Turkey (10-12lb)", "prepMinutes": 90, "cookMinutes": 180, "restMinutes": 30, "carveMinutes": 15, "plateMinutes": 10, "resource": "Oven 1", "temp": 325, "color": "bg-amber-600" },
+    { "id": 2, "name": "Burgundy Mushrooms", "prepMinutes": 5, "cookMinutes": 180, "restMinutes": 0, "resource": "Slow Cooker", "temp": 0, "color": "bg-amber-900" },
+    { "id": 3, "name": "Corn Pudding", "prepMinutes": 10, "cookMinutes": 60, "restMinutes": 60, "resource": "Oven 1", "temp": 350, "color": "bg-yellow-400" },
+    { "id": 4, "name": "Stuffing", "prepMinutes": 45, "cookMinutes": 60, "restMinutes": 60, "resource": "Oven 1", "temp": 350, "color": "bg-orange-200" },
+    { "id": 5, "name": "Mashed Potatoes (Reheat)", "prepMinutes": 5, "cookMinutes": 210, "restMinutes": 0, "plateMinutes": 5, "resource": "Slow Cooker", "temp": 0, "color": "bg-yellow-100" },
+    { "id": 6, "name": "Hawaiian Rolls", "prepMinutes": 0, "cookMinutes": 15, "restMinutes": 15, "resource": "Oven 1", "temp": 350, "color": "bg-orange-300" },
+    { "id": 7, "name": "Caesar Salad", "prepMinutes": 30, "cookMinutes": 0, "restMinutes": 90, "resource": "Counter", "temp": 0, "color": "bg-green-300" },
+    { "id": 8, "name": "Appetizers (Cheese/Dip)", "prepMinutes": 30, "cookMinutes": 0, "restMinutes": 120, "resource": "Counter", "temp": 0, "color": "bg-slate-300" },
+    { "id": 9, "name": "Cranberry Sauce", "prepMinutes": 5, "cookMinutes": 0, "restMinutes": 0, "resource": "Fridge", "temp": 0, "color": "bg-red-700" },
+    { "id": 10, "name": "Gravy (Assembly)", "prepMinutes": 5, "cookMinutes": 15, "restMinutes": 0, "resource": "Stovetop", "temp": 0, "color": "bg-amber-800" },
+    { "id": 11, "name": "Turkey Stock (For Gravy)", "prepMinutes": 10, "cookMinutes": 180, "restMinutes": 0, "resource": "Stovetop", "temp": 0, "color": "bg-amber-700", "usedInDishId": 10 }
+  ],
+  "prepList": [
+    { "id": "t1", "day": "Tuesday", "task": "Turkey pick up and dry brine (12-48 hours before cooking) - breastside up", "done": false },
+    { "id": "t2", "day": "Tuesday", "task": "Clean out fridge - cooler for beer/water", "done": false },
+    { "id": "w1", "day": "Wednesday", "task": "Turkey - Flip the bird to breastside down (mid day)", "done": false },
+    { "id": "w2", "day": "Wednesday", "task": "Make Garlic Mashed Potatoes - store for thursday", "done": false },
+    { "id": "w3", "day": "Wednesday", "task": "Make caesar salad dressing", "done": false },
+    { "id": "w4", "day": "Wednesday", "task": "Wash/cut lettuce", "done": false },
+    { "id": "w5", "day": "Wednesday", "task": "Make cranberry sauce - instapot", "done": false },
+    { "id": "w6", "day": "Wednesday", "task": "Make cucumber salad", "done": false },
+    { "id": "w7", "day": "Wednesday", "task": "Rip up bread for stuffing - set out to dry overnight", "done": false },
+    { "id": "w8", "day": "Wednesday", "task": "Defrost sausage for stuffing", "done": false },
+    { "id": "w9", "day": "Wednesday", "task": "Soften butter on counter overnight", "done": false },
+    { "id": "w10", "day": "Wednesday", "task": "Mix sourcream with onion soup mix for chip dip app", "done": false },
+    { "id": "w11", "day": "Wednesday", "task": "Vacuum & Mop floors", "done": false },
+    { "id": "w12", "day": "Wednesday", "task": "Setup beverage table & dining room table", "done": false },
+    { "id": "w13", "day": "Wednesday", "task": "Put mushrooms in crockpot - low", "done": false },
+    { "id": "th1", "day": "Thursday Morning", "task": "7 AM flip turkey to breastside up", "done": false },
+    { "id": "th2", "day": "Thursday Morning", "task": "7 AM turn mushrooms to warm", "done": false },
+    { "id": "th3", "day": "Thursday Morning", "task": "8 AM make compound butter", "done": false }
+  ]
+}
