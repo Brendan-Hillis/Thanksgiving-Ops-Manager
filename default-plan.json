@@ -52,7 +52,7 @@
       "resource": "Stove Burner 4",
       "temp": 200,
       "color": "bg-yellow-700",
-      "usedInDishId": 10
+      "usedInDishId": 4
     },
     {
       "id": 4,
@@ -68,13 +68,15 @@
     },
     {
       "id": 5,
-      "name": "Corn Pudding",
-      "prepMinutes": 10,
-      "cookMinutes": 60,
-      "restMinutes": 60,
-      "resource": "Oven",
-      "temp": 350,
-      "color": "bg-yellow-400"
+      "name": "Mashed Potatoes (10 lbs Fresh)",
+      "prepMinutes": 45,
+      "cookMinutes": 45,
+      "restMinutes": 0,
+      "carveMinutes": 15,
+      "plateMinutes": 5,
+      "resource": "Stove Burner 1",
+      "temp": 212,
+      "color": "bg-yellow-100"
     },
     {
       "id": 6,
@@ -85,18 +87,6 @@
       "resource": "Oven",
       "temp": 350,
       "color": "bg-orange-200"
-    },
-    {
-      "id": 7,
-      "name": "Mashed Potatoes (10 lbs Fresh)",
-      "prepMinutes": 45,
-      "cookMinutes": 45,
-      "restMinutes": 0,
-      "carveMinutes": 15,
-      "plateMinutes": 5,
-      "resource": "Stove Burner 1",
-      "temp": 212,
-      "color": "bg-yellow-100"
     },
     {
       "id": 8,
@@ -110,7 +100,7 @@
     },
     {
       "id": 9,
-      "name": "Caesar Salad",
+      "name": "Salad",
       "prepMinutes": 30,
       "cookMinutes": 0,
       "restMinutes": 90,
@@ -138,13 +128,46 @@
       "resource": "Fridge",
       "temp": 0,
       "color": "bg-red-700"
+    },
+    {
+      "id": 12,
+      "name": "Sweet Potato Casserole",
+      "prepMinutes": 20,
+      "cookMinutes": 240,
+      "restMinutes": 0,
+      "plateMinutes": 10,
+      "resource": "Slow Cooker Large 1",
+      "temp": 0,
+      "color": "bg-orange-400"
+    },
+    {
+      "id": 13,
+      "name": "Frozen Veggies",
+      "prepMinutes": 5,
+      "cookMinutes": 120,
+      "restMinutes": 0,
+      "plateMinutes": 5,
+      "resource": "Slow Cooker Small 1",
+      "temp": 0,
+      "color": "bg-green-500"
+    },
+    {
+      "id": 14,
+      "name": "Apple Sauce",
+      "prepMinutes": 20,
+      "cookMinutes": 240,
+      "restMinutes": 0,
+      "plateMinutes": 0,
+      "resource": "Slow Cooker Large 2",
+      "temp": 0,
+      "color": "bg-red-400"
     }
   ],
   "prepList": [
     {
       "id": "t1",
       "day": "Tuesday",
-      "task": "Turkey pick up and dry brine (12-48 hours before cooking) - breastside up",
+      "task": "Turkey pick up (ensure fully thawed)",
       "done": false
     },
     {
@@ -223,6 +246,12 @@
       "id": "w13",
       "day": "Wednesday",
       "task": "Put mushrooms in crockpot - low",
+      "done": false
+    },
+    {
+      "id": "w14",
+      "day": "Wednesday",
+      "task": "Put turkey in wet brine (Approx 8:00 PM - 12 hrs before start)",
       "done": false
     },
     {
