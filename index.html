@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,22 +21,18 @@
             width: 8px;
             height: 8px;
         }
-
         ::-webkit-scrollbar-track {
             background: #f1f5f9;
         }
-
         ::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 4px;
         }
-
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
     </style>
 </head>
-
 <body>
     <div id="root"></div>
 
@@ -64,20 +59,20 @@
             </svg>
         );
 
-        const Clock = (props) => <Icon {...props}><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></Icon>;
-        const Utensils = (props) => <Icon {...props}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /><path d="M7 2v20" /><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" /></Icon>;
-        const AlertTriangle = (props) => <Icon {...props}><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" /><line x1="12" x2="12" y1="9" y2="13" /><line x1="12" x2="12.01" y1="17" y2="17" /></Icon>;
-        const Plus = (props) => <Icon {...props}><path d="M5 12h14" /><path d="M12 5v14" /></Icon>;
-        const Trash2 = (props) => <Icon {...props}><path d="M3 6h18" /><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" /><line x1="10" x2="10" y1="11" y2="17" /><line x1="14" x2="14" y1="11" y2="17" /></Icon>;
-        const ChefHat = (props) => <Icon {...props}><path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1h10z" /><path d="M6 17h12" /></Icon>;
-        const Calendar = (props) => <Icon {...props}><rect width="18" height="18" x="3" y="4" rx="2" ry="2" /><line x1="16" x2="16" y1="2" y2="6" /><line x1="8" x2="8" y1="2" y2="6" /><line x1="3" x2="21" y1="10" y2="10" /></Icon>;
-        const CheckCircle2 = (props) => <Icon {...props}><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></Icon>;
-        const ListChecks = (props) => <Icon {...props}><path d="m3 17 2 2 4-4" /><path d="m3 7 2 2 4-4" /><path d="M13 6h8" /><path d="M13 12h8" /><path d="M13 18h8" /></Icon>;
-        const Download = (props) => <Icon {...props}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" x2="12" y1="15" y2="3" /></Icon>;
-        const Upload = (props) => <Icon {...props}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" x2="12" y1="3" y2="15" /></Icon>;
-        const Settings = (props) => <Icon {...props}><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" /><circle cx="12" cy="12" r="3" /></Icon>;
-        const RefreshCw = (props) => <Icon {...props}><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" /></Icon>;
-        const LinkIcon = (props) => <Icon {...props}><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></Icon>;
+        const Clock = (props) => <Icon {...props}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></Icon>;
+        const Utensils = (props) => <Icon {...props}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></Icon>;
+        const AlertTriangle = (props) => <Icon {...props}><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></Icon>;
+        const Plus = (props) => <Icon {...props}><path d="M5 12h14"/><path d="M12 5v14"/></Icon>;
+        const Trash2 = (props) => <Icon {...props}><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></Icon>;
+        const ChefHat = (props) => <Icon {...props}><path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1h10z"/><path d="M6 17h12"/></Icon>;
+        const Calendar = (props) => <Icon {...props}><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></Icon>;
+        const CheckCircle2 = (props) => <Icon {...props}><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></Icon>;
+        const ListChecks = (props) => <Icon {...props}><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></Icon>;
+        const Download = (props) => <Icon {...props}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></Icon>;
+        const Upload = (props) => <Icon {...props}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></Icon>;
+        const Settings = (props) => <Icon {...props}><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></Icon>;
+        const RefreshCw = (props) => <Icon {...props}><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></Icon>;
+        const LinkIcon = (props) => <Icon {...props}><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></Icon>;
 
         // --- Helper Functions ---
 
@@ -91,11 +86,11 @@
 
             // Handle negative or previous day
             if (totalMinutes < 0) {
-                // Simple wrap for day prior
-                const dayPriorMinutes = 24 * 60 + totalMinutes;
-                minutes = dayPriorMinutes % 60;
-                hours = Math.floor(dayPriorMinutes / 60);
-                return `Day Prior ${hours}:${minutes.toString().padStart(2, '0')}`;
+                 // Simple wrap for day prior
+                 const dayPriorMinutes = 24 * 60 + totalMinutes;
+                 minutes = dayPriorMinutes % 60;
+                 hours = Math.floor(dayPriorMinutes / 60);
+                 return `Day Prior ${hours}:${minutes.toString().padStart(2, '0')}`;
             }
 
             return `${hours}:${minutes.toString().padStart(2, '0')} ${period}`;
@@ -138,9 +133,10 @@
                 restMinutes: 0,
                 carveMinutes: 0,
                 plateMinutes: 0,
+                serveOffsetMinutes: 0, // Added Serve Offset
                 resource: '',
                 temp: 350,
-                usedInDishId: '' // New Field: The ID of the dish this one is used in (Prerequisite)
+                usedInDishId: ''
             });
 
             const [newPrepItem, setNewPrepItem] = useState({ day: 'Wednesday', task: '' });
@@ -211,6 +207,7 @@
                     const dish = dishMap.get(dishId);
                     if (!dish) return null;
 
+                    // Determine the "Target Finish Time"
                     let finishTime = dinnerMinutes;
 
                     // If this dish is used in another, its finish time is the Start Time of the parent
@@ -218,6 +215,11 @@
                         const parentTimes = calculateDish(Number(dish.usedInDishId), visited);
                         if (parentTimes) {
                             finishTime = parentTimes.start;
+                        }
+                    } else {
+                        // If it's a main dish, check for Serve Offset (finish earlier than dinner)
+                        if (dish.serveOffsetMinutes) {
+                            finishTime -= dish.serveOffsetMinutes;
                         }
                     }
 
@@ -257,6 +259,9 @@
 
                 // Fallback for empty list
                 const earliestStart = processedDishes.length > 0 ? Math.min(...processedDishes.map(d => d.times.start)) : dinnerMinutes;
+
+                // Range is explicitly from earliest start to dinner time (even if items finish early)
+                // This ensures the chart always draws to the Dinner line
                 const range = dinnerMinutes - earliestStart || 60;
 
                 return { processedDishes, sortedDishes, earliestStart, range, dinnerMinutes };
@@ -351,7 +356,7 @@
             const addDish = () => {
                 if (!newDish.name) return;
                 setDishes([...dishes, { ...newDish, id: Date.now(), color: 'bg-slate-500' }]);
-                setNewDish({ name: '', prepMinutes: 15, cookMinutes: 30, restMinutes: 0, carveMinutes: 0, plateMinutes: 0, resource: resources[0] || '', temp: 350, usedInDishId: '' });
+                setNewDish({ name: '', prepMinutes: 15, cookMinutes: 30, restMinutes: 0, carveMinutes: 0, plateMinutes: 0, serveOffsetMinutes: 0, resource: resources[0] || '', temp: 350, usedInDishId: '' });
             };
 
             const removeDish = (id) => {
@@ -363,7 +368,7 @@
             };
 
             const addPrepItem = () => {
-                if (!newPrepItem.task) return;
+                if(!newPrepItem.task) return;
                 setPrepList([...prepList, { id: Date.now(), ...newPrepItem, done: false }]);
                 setNewPrepItem({ ...newPrepItem, task: '' });
             };
@@ -373,14 +378,14 @@
             };
 
             const addResource = () => {
-                if (!newResourceName) return;
-                if (resources.includes(newResourceName)) return;
+                if(!newResourceName) return;
+                if(resources.includes(newResourceName)) return;
                 setResources([...resources, newResourceName]);
                 setNewResourceName('');
             };
 
             const removeResource = (rToRemove) => {
-                if (confirm(`Are you sure you want to remove ${rToRemove}? Existing dishes using it will keep the data but may show warnings.`)) {
+                if(confirm(`Are you sure you want to remove ${rToRemove}? Existing dishes using it will keep the data but may show warnings.`)) {
                     setResources(resources.filter(r => r !== rToRemove));
                 }
             };
@@ -420,8 +425,8 @@
             };
 
             const handleResetToDefaults = async () => {
-                if (confirm("Are you sure? This will overwrite your current plan.")) {
-                    await fetchDefaultPlan();
+                if(confirm("Are you sure? This will overwrite your current plan.")) {
+                     await fetchDefaultPlan();
                 }
             };
 
@@ -497,12 +502,14 @@
                                             {scheduleData.sortedDishes.map((dish) => {
                                                 const totalProjectMinutes = scheduleData.range || 1;
                                                 const startOffset = dish.times.start - scheduleData.earliestStart;
-                                                const leftPct = (startOffset / totalProjectMinutes) * 75;
-                                                const prepWidth = (dish.prepMinutes / totalProjectMinutes) * 75;
-                                                const cookWidth = (dish.cookMinutes / totalProjectMinutes) * 75;
-                                                const restWidth = (dish.restMinutes / totalProjectMinutes) * 75;
-                                                const carveWidth = (dish.carveMinutes / totalProjectMinutes) * 75;
-                                                const plateWidth = (dish.plateMinutes / totalProjectMinutes) * 75;
+
+                                                // UPDATED: Scale to 100% of container width instead of 75%
+                                                const leftPct = (startOffset / totalProjectMinutes) * 100;
+                                                const prepWidth = (dish.prepMinutes / totalProjectMinutes) * 100;
+                                                const cookWidth = (dish.cookMinutes / totalProjectMinutes) * 100;
+                                                const restWidth = (dish.restMinutes / totalProjectMinutes) * 100;
+                                                const carveWidth = (dish.carveMinutes / totalProjectMinutes) * 100;
+                                                const plateWidth = (dish.plateMinutes / totalProjectMinutes) * 100;
 
                                                 return (
                                                     <div key={dish.id} className="group">
@@ -514,12 +521,13 @@
                                                                 </div>
                                                                 <div className="text-xs text-slate-500 flex gap-2">
                                                                     <span>{dish.resource} {dish.resource && dish.resource.includes('Oven') && `@ ${dish.temp}°F`}</span>
+                                                                    {dish.serveOffsetMinutes > 0 && <span className="text-slate-400 text-[10px]">(-{dish.serveOffsetMinutes}m)</span>}
                                                                 </div>
                                                             </div>
                                                             <div className="w-3/4 relative h-8 bg-slate-100 rounded-full flex overflow-hidden">
                                                                 <div style={{ width: `${leftPct}%` }} className="h-full bg-transparent shrink-0"></div>
                                                                 {dish.prepMinutes > 0 && (
-                                                                    <div style={{ width: `${Math.max(prepWidth, 1)}%` }} className="h-full bg-blue-400 shrink-0 flex items-center justify-center group/item relative cursor-help">
+                                                                    <div style={{ width: `${Math.max(prepWidth, 0.5)}%` }} className="h-full bg-blue-400 shrink-0 flex items-center justify-center group/item relative cursor-help">
                                                                         <span className="text-[10px] text-white font-bold truncate px-1">P</span>
                                                                         <div className="absolute bottom-full mb-1 hidden group-hover/item:block bg-slate-800 text-white text-xs p-1 rounded z-10 whitespace-nowrap shadow-xl">
                                                                             {minutesToTime(dish.times.start)} - Prep ({dish.prepMinutes}m)
@@ -527,7 +535,7 @@
                                                                     </div>
                                                                 )}
                                                                 {dish.cookMinutes > 0 && (
-                                                                    <div style={{ width: `${Math.max(cookWidth, 1)}%` }} className={`h-full ${dish.resource && dish.resource.includes('Oven') ? 'bg-orange-500' : 'bg-red-500'} shrink-0 flex items-center justify-center group/item relative cursor-help`}>
+                                                                    <div style={{ width: `${Math.max(cookWidth, 0.5)}%` }} className={`h-full ${dish.resource && dish.resource.includes('Oven') ? 'bg-orange-500' : 'bg-red-500'} shrink-0 flex items-center justify-center group/item relative cursor-help`}>
                                                                         <span className="text-[10px] text-white font-bold truncate px-1">C</span>
                                                                         <div className="absolute bottom-full mb-1 hidden group-hover/item:block bg-slate-800 text-white text-xs p-1 rounded z-10 whitespace-nowrap shadow-xl">
                                                                             {minutesToTime(dish.times.cook)} - Cook ({dish.cookMinutes}m)
@@ -535,7 +543,7 @@
                                                                     </div>
                                                                 )}
                                                                 {dish.restMinutes > 0 && (
-                                                                    <div style={{ width: `${Math.max(restWidth, 1)}%` }} className="h-full bg-emerald-400 shrink-0 flex items-center justify-center group/item relative cursor-help">
+                                                                    <div style={{ width: `${Math.max(restWidth, 0.5)}%` }} className="h-full bg-emerald-400 shrink-0 flex items-center justify-center group/item relative cursor-help">
                                                                         <span className="text-[10px] text-white font-bold truncate px-1">R</span>
                                                                         <div className="absolute bottom-full mb-1 hidden group-hover/item:block bg-slate-800 text-white text-xs p-1 rounded z-10 whitespace-nowrap shadow-xl">
                                                                             {minutesToTime(dish.times.rest)} - Rest ({dish.restMinutes}m)
@@ -543,7 +551,7 @@
                                                                     </div>
                                                                 )}
                                                                 {dish.carveMinutes > 0 && (
-                                                                    <div style={{ width: `${Math.max(carveWidth, 1)}%` }} className="h-full bg-purple-400 shrink-0 flex items-center justify-center group/item relative cursor-help">
+                                                                    <div style={{ width: `${Math.max(carveWidth, 0.5)}%` }} className="h-full bg-purple-400 shrink-0 flex items-center justify-center group/item relative cursor-help">
                                                                         <span className="text-[10px] text-white font-bold truncate px-1">Cv</span>
                                                                         <div className="absolute bottom-full mb-1 hidden group-hover/item:block bg-slate-800 text-white text-xs p-1 rounded z-10 whitespace-nowrap shadow-xl">
                                                                             {minutesToTime(dish.times.carve)} - Carve ({dish.carveMinutes}m)
@@ -551,7 +559,7 @@
                                                                     </div>
                                                                 )}
                                                                 {dish.plateMinutes > 0 && (
-                                                                    <div style={{ width: `${Math.max(plateWidth, 1)}%` }} className="h-full bg-pink-400 shrink-0 flex items-center justify-center group/item relative cursor-help">
+                                                                    <div style={{ width: `${Math.max(plateWidth, 0.5)}%` }} className="h-full bg-pink-400 shrink-0 flex items-center justify-center group/item relative cursor-help">
                                                                         <span className="text-[10px] text-white font-bold truncate px-1">Pl</span>
                                                                         <div className="absolute bottom-full mb-1 hidden group-hover/item:block bg-slate-800 text-white text-xs p-1 rounded z-10 whitespace-nowrap shadow-xl">
                                                                             {minutesToTime(dish.times.plate)} - Plate ({dish.plateMinutes}m)
@@ -590,13 +598,13 @@
                                 </h2>
 
                                 <div className="mb-6 grid grid-cols-1 md:grid-cols-4 gap-2">
-                                    <select className="border border-slate-300 rounded p-2" value={newPrepItem.day} onChange={(e) => setNewPrepItem({ ...newPrepItem, day: e.target.value })}>
+                                    <select className="border border-slate-300 rounded p-2" value={newPrepItem.day} onChange={(e) => setNewPrepItem({...newPrepItem, day: e.target.value})}>
                                         <option>Monday</option>
                                         <option>Tuesday</option>
                                         <option>Wednesday</option>
                                         <option>Thursday Morning</option>
                                     </select>
-                                    <input type="text" className="border border-slate-300 rounded p-2 md:col-span-2" placeholder="Add new task..." value={newPrepItem.task} onChange={(e) => setNewPrepItem({ ...newPrepItem, task: e.target.value })} onKeyPress={(e) => e.key === 'Enter' && addPrepItem()} />
+                                    <input type="text" className="border border-slate-300 rounded p-2 md:col-span-2" placeholder="Add new task..." value={newPrepItem.task} onChange={(e) => setNewPrepItem({...newPrepItem, task: e.target.value})} onKeyPress={(e) => e.key === 'Enter' && addPrepItem()} />
                                     <button onClick={addPrepItem} className="bg-slate-800 text-white rounded p-2 font-bold">Add Task</button>
                                 </div>
 
@@ -635,12 +643,13 @@
                                 <div className="relative border-l-2 border-slate-200 ml-3 space-y-8 pb-4">
                                     {runSheet.map((item, idx) => (
                                         <div key={idx} className="relative pl-8 group">
-                                            <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 border-white ${item.type === 'serve' ? 'bg-orange-600 w-5 h-5 -left-[11px]' :
-                                                    item.type === 'prep' ? 'bg-blue-400' :
-                                                        item.type === 'rest' ? 'bg-emerald-400' :
-                                                            item.type === 'carve' ? 'bg-purple-400' :
-                                                                item.type === 'plate' ? 'bg-pink-400' : 'bg-red-500'
-                                                }`}></div>
+                                            <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 border-white ${
+                                                item.type === 'serve' ? 'bg-orange-600 w-5 h-5 -left-[11px]' :
+                                                item.type === 'prep' ? 'bg-blue-400' :
+                                                item.type === 'rest' ? 'bg-emerald-400' :
+                                                item.type === 'carve' ? 'bg-purple-400' :
+                                                item.type === 'plate' ? 'bg-pink-400' : 'bg-red-500'
+                                            }`}></div>
 
                                             <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
                                                 <span className="font-mono font-bold text-lg text-slate-700 min-w-[100px]">{minutesToTime(item.time)}</span>
@@ -678,28 +687,28 @@
                                         <div className="space-y-4">
                                             <div>
                                                 <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Dish Name</label>
-                                                <input type="text" value={newDish.name} onChange={e => setNewDish({ ...newDish, name: e.target.value })} placeholder="e.g. Cornbread" className="w-full border border-slate-300 rounded p-2 focus:ring-2 focus:ring-orange-200 outline-none" />
+                                                <input type="text" value={newDish.name} onChange={e => setNewDish({...newDish, name: e.target.value})} placeholder="e.g. Cornbread" className="w-full border border-slate-300 rounded p-2 focus:ring-2 focus:ring-orange-200 outline-none" />
                                             </div>
 
                                             <div className="grid grid-cols-2 gap-3">
                                                 <div>
                                                     <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Prep (min)</label>
-                                                    <input type="number" value={newDish.prepMinutes} onChange={e => setNewDish({ ...newDish, prepMinutes: parseInt(e.target.value) || 0 })} className="w-full border border-slate-300 rounded p-2" />
+                                                    <input type="number" value={newDish.prepMinutes} onChange={e => setNewDish({...newDish, prepMinutes: parseInt(e.target.value) || 0})} className="w-full border border-slate-300 rounded p-2" />
                                                 </div>
                                                 <div>
                                                     <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Cook (min)</label>
-                                                    <input type="number" value={newDish.cookMinutes} onChange={e => setNewDish({ ...newDish, cookMinutes: parseInt(e.target.value) || 0 })} className="w-full border border-slate-300 rounded p-2" />
+                                                    <input type="number" value={newDish.cookMinutes} onChange={e => setNewDish({...newDish, cookMinutes: parseInt(e.target.value) || 0})} className="w-full border border-slate-300 rounded p-2" />
                                                 </div>
                                             </div>
 
                                             <div className="grid grid-cols-2 gap-3">
                                                 <div>
                                                     <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Rest (min)</label>
-                                                    <input type="number" value={newDish.restMinutes} onChange={e => setNewDish({ ...newDish, restMinutes: parseInt(e.target.value) || 0 })} className="w-full border border-slate-300 rounded p-2" />
+                                                    <input type="number" value={newDish.restMinutes} onChange={e => setNewDish({...newDish, restMinutes: parseInt(e.target.value) || 0})} className="w-full border border-slate-300 rounded p-2" />
                                                 </div>
                                                 <div>
                                                     <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Resource</label>
-                                                    <select value={newDish.resource} onChange={e => setNewDish({ ...newDish, resource: e.target.value })} className="w-full border border-slate-300 rounded p-2 bg-white">
+                                                    <select value={newDish.resource} onChange={e => setNewDish({...newDish, resource: e.target.value})} className="w-full border border-slate-300 rounded p-2 bg-white">
                                                         {resources.map(r => <option key={r} value={r}>{r}</option>)}
                                                     </select>
                                                 </div>
@@ -708,18 +717,33 @@
                                             <div className="grid grid-cols-2 gap-3">
                                                 <div>
                                                     <label className="block text-xs font-bold text-slate-500 uppercase mb-1 text-purple-600">Carve (min)</label>
-                                                    <input type="number" value={newDish.carveMinutes} onChange={e => setNewDish({ ...newDish, carveMinutes: parseInt(e.target.value) || 0 })} className="w-full border border-slate-300 rounded p-2" />
+                                                    <input type="number" value={newDish.carveMinutes} onChange={e => setNewDish({...newDish, carveMinutes: parseInt(e.target.value) || 0})} className="w-full border border-slate-300 rounded p-2" />
                                                 </div>
                                                 <div>
                                                     <label className="block text-xs font-bold text-slate-500 uppercase mb-1 text-pink-600">Plate (min)</label>
-                                                    <input type="number" value={newDish.plateMinutes} onChange={e => setNewDish({ ...newDish, plateMinutes: parseInt(e.target.value) || 0 })} className="w-full border border-slate-300 rounded p-2" />
+                                                    <input type="number" value={newDish.plateMinutes} onChange={e => setNewDish({...newDish, plateMinutes: parseInt(e.target.value) || 0})} className="w-full border border-slate-300 rounded p-2" />
+                                                </div>
+                                            </div>
+
+                                            {/* Added Serve Offset Input */}
+                                            <div>
+                                                <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Serve Timing</label>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-sm text-slate-600">Finish</span>
+                                                    <input
+                                                        type="number"
+                                                        value={newDish.serveOffsetMinutes}
+                                                        onChange={e => setNewDish({...newDish, serveOffsetMinutes: parseInt(e.target.value) || 0})}
+                                                        className="w-16 border border-slate-300 rounded p-2 text-center"
+                                                    />
+                                                    <span className="text-sm text-slate-600">min before dinner</span>
                                                 </div>
                                             </div>
 
                                             {newDish.resource && newDish.resource.includes('Oven') && (
                                                 <div>
                                                     <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Oven Temp (°F)</label>
-                                                    <input type="number" value={newDish.temp} step="25" onChange={e => setNewDish({ ...newDish, temp: parseInt(e.target.value) || 0 })} className="w-full border border-slate-300 rounded p-2" />
+                                                    <input type="number" value={newDish.temp} step="25" onChange={e => setNewDish({...newDish, temp: parseInt(e.target.value) || 0})} className="w-full border border-slate-300 rounded p-2" />
                                                 </div>
                                             )}
 
@@ -727,7 +751,7 @@
                                                 <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Used In (Prerequisite For)</label>
                                                 <select
                                                     value={newDish.usedInDishId}
-                                                    onChange={e => setNewDish({ ...newDish, usedInDishId: e.target.value })}
+                                                    onChange={e => setNewDish({...newDish, usedInDishId: e.target.value})}
                                                     className="w-full border border-slate-300 rounded p-2 bg-white"
                                                 >
                                                     <option value="">None (Served at Dinner)</option>
@@ -804,6 +828,7 @@
                                                     <span>Rest: {dish.restMinutes}m</span>
                                                     {dish.carveMinutes > 0 && <span className="text-purple-600 font-semibold">Carve: {dish.carveMinutes}m</span>}
                                                     {dish.plateMinutes > 0 && <span className="text-pink-600 font-semibold">Plate: {dish.plateMinutes}m</span>}
+                                                    {dish.serveOffsetMinutes > 0 && <span className="text-slate-500 font-semibold bg-slate-100 px-1 rounded">Done {dish.serveOffsetMinutes}m early</span>}
                                                 </div>
                                             </div>
                                             <button onClick={() => removeDish(dish.id)} className="text-slate-300 hover:text-red-500 transition-colors p-2">
@@ -813,7 +838,7 @@
                                     ))}
                                     {dishes.length === 0 && (
                                         <div className="text-center py-12 text-slate-400 bg-slate-100 rounded-xl border-2 border-dashed border-slate-300">
-                                            <p>No dishes planned yet. <br /><span className="text-xs">Checking for defaults...</span></p>
+                                            <p>No dishes planned yet. <br/><span className="text-xs">Checking for defaults...</span></p>
                                         </div>
                                     )}
                                 </div>
@@ -831,5 +856,4 @@
         root.render(<ThanksgivingPlanner />);
     </script>
 </body>
-
 </html>

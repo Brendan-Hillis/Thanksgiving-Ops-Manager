@@ -2,7 +2,10 @@
   "_README": "INSTRUCTIONS: 1) 'resources' lists your available appliances. 2) 'dishes' are your menu items. Times are in minutes. 3) 'prepList' are tasks for days leading up to the event. 4) You can add optional 'carveMinutes' or 'plateMinutes' to any dish to account for time between resting and serving.",
   "resources": [
     "Oven",
-    "Stovetop",
+    "Stove Burner 1",
+    "Stove Burner 2",
+    "Stove Burner 3",
+    "Stove Burner 4",
     "Deep Fryer",
     "Slow Cooker Large 1",
     "Slow Cooker Large 2",
@@ -46,10 +49,10 @@
       "restMinutes": 15,
       "carveMinutes": 5,
       "plateMinutes": 0,
-      "resource": "Stovetop",
+      "resource": "Stove Burner 4",
       "temp": 200,
       "color": "bg-yellow-700",
-      "usedInDishId": 4
+      "usedInDishId": 10
     },
     {
       "id": 4,
@@ -59,7 +62,7 @@
       "restMinutes": 0,
       "carveMinutes": 0,
       "plateMinutes": 5,
-      "resource": "Stovetop",
+      "resource": "Stove Burner 2",
       "temp": 200,
       "color": "bg-yellow-800"
     },
@@ -85,13 +88,14 @@
     },
     {
       "id": 7,
-      "name": "Mashed Potatoes (Reheat)",
-      "prepMinutes": 5,
-      "cookMinutes": 210,
+      "name": "Mashed Potatoes (10 lbs Fresh)",
+      "prepMinutes": 45,
+      "cookMinutes": 45,
       "restMinutes": 0,
+      "carveMinutes": 15,
       "plateMinutes": 5,
-      "resource": "Slow Cooker Large 1",
-      "temp": 0,
+      "resource": "Stove Burner 1",
+      "temp": 212,
       "color": "bg-yellow-100"
     },
     {
@@ -122,7 +126,8 @@
       "restMinutes": 120,
       "resource": "Counter",
       "temp": 0,
-      "color": "bg-slate-300"
+      "color": "bg-slate-300",
+      "serveOffsetMinutes": 240
     },
     {
       "id": 11,
@@ -152,12 +157,6 @@
       "id": "w1",
       "day": "Wednesday",
       "task": "Turkey - Flip the bird to breastside down (mid day)",
-      "done": false
-    },
-    {
-      "id": "w2",
-      "day": "Wednesday",
-      "task": "Make Garlic Mashed Potatoes - store for thursday",
       "done": false
     },
     {
